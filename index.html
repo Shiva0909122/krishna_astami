@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Krishna Astami Celebration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00aaff;
+            /* color:orange, blue,orange; */
+            text-shadow: 2px 8px 4px rgba(0, 0, 01, 0.5);
+        }
+
+        #krishna-img {
+            display: block;
+            margin: 0 auto;
+            width: 300px;
+            height: auto;
+        }
+
+        #mantra {
+            text-align: center;
+            color: #00aaff;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        #play-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Krishna Astami CFF Celebration</h1>
+    <img id="krishna-img" src="krishnna.jpg" alt="Krishna">
+    <div id="mantra">
+        <marquee behavior="flavorful" direction="">
+            Chant the mantra: "Hare Krishna, Hare Krishna, Krishna Krishna, Hare Hare, Hare Rama, Hare Rama, Rama Rama,
+            Hare Hare"</marquee>
+    </div>
+    <div id="play-button">
+        <button onclick="playMantra()">Play Mantra</button>
+    </div>
+
+    <script>
+        function playMantra() {
+            var audio = new Audio('mantra.mp3');
+            audio.play();
+        }
+    </script>
+</body>
+
+</html>
