@@ -2,30 +2,64 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Krishna Astami Celebration</title>
+    <link rel="shortcut icon" href="krishna.jpg" type="image/x-icon">
     <style>
         body {
             font-family: Arial, sans-serif;
+            /* background: rgb(255, 218, 185); Fallback color if the image doesn't load */
+            background: linear-gradient(to bottom right, rgba(255, 218, 185, 0.8), rgba(255, 179, 179, 0.8)), url('background-krishna.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+
         }
 
         h1 {
             text-align: center;
-            color: #00aaff;
-            /* color:orange, blue,orange; */
-            text-shadow: 2px 8px 4px rgba(0, 0, 01, 0.5);
+            color: #11110e;
+            text-shadow: 2px 8px 4px rgba(0, 0, 0, 0.7);
+            padding: 20px;
         }
 
-        #krishna-img {
-            display: block;
-            margin: 0 auto;
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            background-color: transparent;
+            color: white;
+            font-size: 18px;
+        }
+
+        #carousel-container {
+            position: relative;
             width: 300px;
-            height: auto;
+            margin: 0 auto;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-images img {
+            width: 300px;
+            height: 300px;
+            flex-shrink: 0;
+            border-radius: 10px;
         }
 
         #mantra {
             text-align: center;
-            color: #00aaff;
-            font-size: 18px;
+            color: #10100e;
+            font-size: 20px;
+            font-weight: bold;
             margin-top: 20px;
         }
 
@@ -33,27 +67,121 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        button {
+            background-color: #ffd700;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            background-color: #ff8c00;
+        }
+
+
+        @media only screen and (min-width: 320px) and (max-width: 480px) {
+            body {
+                height: auto;
+                /* Use auto instead of vh for more consistent behavior */
+            }
+
+            h1 {
+                font-size: 24px;
+
+            }
+
+            #carousel-container {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .carousel-images {
+                height: 300px;
+            }
+
+            #mantra {
+                font-size: 14px;
+                padding: 0 5px;
+            }
+
+            button {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            footer {
+                font-size: 16px;
+            }
+        }
+
+        @media only screen and (min-width: 481px) and (max-width: 769px) {
+            body {
+                height: auto;
+            }
+
+            #carousel-container {
+
+                max-width: 700px;
+            }
+
+
+        }
     </style>
 </head>
 
 <body>
-    <h1>Krishna Astami CFF Celebration</h1>
-    <img id="krishna-img" src="krishnna.jpg" alt="Krishna">
-    <div id="mantra">
-        <marquee behavior="flavorful" direction="">
-            Chant the mantra: "Hare Krishna, Hare Krishna, Krishna Krishna, Hare Hare, Hare Rama, Hare Rama, Rama Rama,
-            Hare Hare"</marquee>
+    <h1>Krishna Astami Celebration</h1>
+
+    <!-- Carousel Container -->
+    <div id="carousel-container">
+        <div class="carousel-images">
+            <img src="krishna.jpg" alt="Krishna">
+            <img src="krishna5.jpg" alt="">
+            <img src="krishna6.jpg" alt="">
+            <img src="krishna2.jpg" alt="">
+            <img src="krishna4.jpg" alt="">
+            <img src="krishna3.jpg" alt="">
+        </div>
     </div>
+
+    <div id="mantra">
+        <marquee behavior="scroll" direction="left">
+            Chant the mantra: "Hare Krishna, Hare Krishna, Krishna Krishna, Hare Hare, Hare Rama, Hare Rama, Rama Rama,
+            Hare Hare"
+        </marquee>
+    </div>
+
     <div id="play-button">
         <button onclick="playMantra()">Play Mantra</button>
     </div>
 
     <script>
+        let currentIndex = 0;
+
+        function showNextImage() {
+            const images = document.querySelector('.carousel-images');
+            const totalImages = images.children.length;
+            currentIndex = (currentIndex + 1) % totalImages;
+            const translateX = -currentIndex * 300; // Adjust based on image width
+            images.style.transform = `translateX(${translateX}px)`;
+        }
+
+        // Automatically show the next image every 2 seconds
+        setInterval(showNextImage, 2000);
+
         function playMantra() {
             var audio = new Audio('mantra.mp3');
             audio.play();
         }
     </script>
+    <footer>
+        &copy; 2024 Shivarth. All Rights Reserved.
+    </footer>
 </body>
 
 </html>
